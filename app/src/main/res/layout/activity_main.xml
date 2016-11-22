@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -27,11 +28,40 @@
                 tools:visibility="visible" />
         </android.support.v7.widget.Toolbar>
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.salon.mysalon.MainActivity" />
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.salon.mysalon.MainActivity" />
+
+            <FrameLayout
+                android:id="@+id/listLayout"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/textViewNoData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="No Data"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+            </FrameLayout>
+        </FrameLayout>
     </LinearLayout>
 </FrameLayout>

@@ -32,6 +32,10 @@
 
     <uses-permission android:name="com.salon.mysalon.permission.C2D_MESSAGE" />
 
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -51,8 +55,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name="com.salon.mysalon.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,7 +74,7 @@
         <receiver
             android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
         <receiver
             android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
             android:enabled="true"
@@ -121,6 +124,11 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".FranchiseDetailsActivity"
+            android:label="@string/title_activity_franchise_details"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

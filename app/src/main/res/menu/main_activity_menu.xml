@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_list"
+        android:icon="@drawable/ic_list"
+        android:title="Notification"
+        android:visible="false"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_map"
         android:icon="@drawable/ic_map"
         android:title="Notification"

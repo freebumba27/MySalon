@@ -31,10 +31,9 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.salon.mysalon.permission.C2D_MESSAGE" />
-
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -128,7 +127,8 @@
         <activity
             android:name=".FranchiseDetailsActivity"
             android:label="@string/title_activity_franchise_details"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SelectServiceActivity"></activity>
     </application>
 
 </manifest>

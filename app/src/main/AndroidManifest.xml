@@ -129,6 +129,9 @@
             android:label="@string/title_activity_franchise_details"
             android:theme="@style/AppTheme" />
         <activity android:name=".SelectServiceActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="f8624688c09cd1bfa70e0d5f84519c1bbdcdad90" />
     </application>
 
 </manifest>

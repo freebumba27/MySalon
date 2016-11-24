@@ -1,8 +1,12 @@
 package com.salon.mysalon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digits.sdk.android.AuthCallback;
@@ -11,12 +15,24 @@ import com.digits.sdk.android.DigitsAuthButton;
 import com.digits.sdk.android.DigitsException;
 import com.digits.sdk.android.DigitsSession;
 import com.salon.mysalon.utils.Constants;
+import com.salon.mysalon.utils.ReusableClass;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.fabric.sdk.android.Fabric;
 
 public class ConfirmServicesActivity extends AppCompatActivity {
+
+    @Bind(R.id.toolBar)
+    Toolbar toolBar;
+    @Bind(R.id.TextVIewService)
+    TextView TextVIewService;
+    @Bind(R.id.TextVIewTime)
+    TextView TextVIewTime;
+    @Bind(R.id.auth_button)
+    DigitsAuthButton digitsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +44,27 @@ public class ConfirmServicesActivity extends AppCompatActivity {
         Fabric.with(this, new TwitterCore(authConfig), digitsBuilder.build());
 
         setContentView(R.layout.activity_confirm_services);
+        ButterKnife.bind(this);
+        digitsButton.setText("Confirm with mobile no");
+        digitsButton.setTextSize(14);
+
+        toolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        Intent intent = getIntent();
+        String totalTime = intent.getStringExtra("ServiceTotalTime");
+        String serviceName = intent.getStringExtra("ServiceName");
+
+        TextVIewService.setText(serviceName);
+        TextVIewTime.setText("Approx time - " + ReusableClass.getHoursMin(Integer.parseInt(totalTime)) + " hrs");
+
+        Toast.makeText(this, "Total time - " + totalTime, Toast.LENGTH_SHORT).show();
 
 
-        DigitsAuthButton digitsButton = (DigitsAuthButton) findViewById(R.id.auth_button);
         digitsButton.setCallback(new AuthCallback() {
             @Override
             public void success(DigitsSession session, String phoneNumber) {

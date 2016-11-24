@@ -6,11 +6,11 @@ package com.salon.mysalon.model;
 
 public class Service {
     private String name;
-    private String time;
+    private int time;
     private int id;
     private boolean isSelected;
 
-    public Service(int id, String name, String time, boolean isSelected) {
+    public Service(int id, String name, int time, boolean isSelected) {
         this.id = id;
         this.name = name;
         this.time = time;
@@ -25,11 +25,11 @@ public class Service {
         this.name = name;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 

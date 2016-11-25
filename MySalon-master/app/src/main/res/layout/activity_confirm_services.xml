@@ -123,6 +123,61 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layoutContactNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Contact no"
+                android:textColor="@color/heading_text_bg" />
+
+            <TextView
+                android:id="@+id/TextViewContactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textColor="@android:color/black"
+                tools:text="+60283877483" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/heading_text_bg" />
+
+            <EditText
+                android:id="@+id/TextViewName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:hint="Type your name"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
         <com.digits.sdk.android.DigitsAuthButton
             android:id="@+id/auth_button"
             android:layout_width="wrap_content"
@@ -132,6 +187,17 @@
             android:backgroundTint="@color/colorAccent"
             android:text="Verify Mobile No"
             android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/buttonBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="booking"
+            android:text="Book"
+            android:theme="@style/Button.ColorPrimary"
+            android:visibility="gone" />
 
     </LinearLayout>
 

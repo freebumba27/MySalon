@@ -5,8 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import com.digits.sdk.android.Digits;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import io.fabric.sdk.android.Fabric;
 
 public class SplashActivity extends Activity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "wUTlItKsceFZ3IwETMZMcNyR2";
+    private static final String TWITTER_SECRET = "LsYHViCy7Hqy6TSDpV8hzqAYBUisLuyL17fb2aBFFPJq0xt08f";
+
 
     /**
      * Time to display the splash screen in milliseconds.
@@ -32,6 +41,8 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new TwitterCore(authConfig), new Digits.Builder().build());
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {

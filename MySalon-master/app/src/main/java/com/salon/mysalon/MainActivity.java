@@ -27,8 +27,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.salon.mysalon.model.Franchise;
+import com.salon.mysalon.utils.Constants;
 import com.salon.mysalon.widgets.FranchiseListAdapter;
 
 import java.util.ArrayList;
@@ -73,7 +75,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         progress.setVisibility(View.VISIBLE);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+        Query query = databaseReference.orderByChild("salon_id").equalTo(Constants.SALON_ID);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Toast.makeText(MainActivity.this, dataSnapshot.getValue(String.class), Toast.LENGTH_SHORT).show();
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     double lng = Double.parseDouble(
                             singleFranchiseSnapshot.child("lng").getValue(String.class));
                     String name = (String) singleFranchiseSnapshot.child("name").getValue();
-                    int availableSlots = singleFranchiseSnapshot.child("available_slots").getValue(Integer.class);
+                    int availableSlots = singleFranchiseSnapshot.child("slot_available").getValue(Integer.class);
 
                     Franchise franchise = new Franchise();
                     franchise.setAddress(address);
@@ -124,24 +128,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         }
 
-        LatLngBounds bounds = builder.build();
+        if (franchiseArrayList.size() != 0) {
+            LatLngBounds bounds = builder.build();
 
-        int width = getResources().getDisplayMetrics().widthPixels;
-        int height = getResources().getDisplayMetrics().heightPixels;
-        int padding = (int) (width * 0.10); // offset from edges of the map 12% of screen
+            int width = getResources().getDisplayMetrics().widthPixels;
+            int height = getResources().getDisplayMetrics().heightPixels;
+            int padding = (int) (width * 0.15); // offset from edges of the map 12% of screen
 
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
 
-        mMap.moveCamera(cu);
+            mMap.moveCamera(cu);
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                Intent intent = new Intent(MainActivity.this, FranchiseDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
+            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    Intent intent = new Intent(MainActivity.this, FranchiseDetailsActivity.class);
+                    startActivity(intent);
+                }
+            });
 
+        }
         progress.setVisibility(View.INVISIBLE);
     }
 
